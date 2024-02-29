@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return ;
+// });
+
+
+Route::get('/', [HomeController::class,'index']);
+
+Route::prefix('category') ->group(function(){
+    Route::get('/food-beverage', [ProductController::class, 'foodbeverage']);
+    Route::get('/beauty-health', [ProductController::class, 'beautyhealth']);
+    Route::get('/home-care', [ProductController::class, 'beautycare']);     
+    Route::get('/baby-kid', [ProductController::class, 'babykid']);
 });
